@@ -1,0 +1,33 @@
+
+{
+    "adminInterface":"localhost:4985",
+	"interface":"localhost:4984",
+    "log":["*"],
+    "databases": {
+        "health": {
+            "server":"http://localhost:8091",
+			"username":"sahaj",
+			"password":"password",
+			"enable_shared_bucket_access":true,
+			"num_index_replicas":0,
+            "sync":`
+                function (doc) {
+                    channel (doc.itemType);
+                }
+            `,
+            "users": {
+                "sahaj": {
+                    "disabled": false,
+					"password":"root",
+                    "admin_channels": ["*"]
+                }
+            }
+        }
+    },
+    "CORS": {
+        "Origin": ["http://localhost:4200"],
+        "LoginOrigin": ["http://localhost:4200"],
+        "Headers": ["Content-Type"],
+        "MaxAge": 17280000
+    }
+}
